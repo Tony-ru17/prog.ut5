@@ -12,7 +12,7 @@ public class ej1 {
         int numLinea;
 
         //Si no se han pasado argumentos, se piden en el programa
-        if(args.length==0){
+        if(args.length<=0){
             Scanner sc=new Scanner(System.in);
             System.out.println("Dime el fichero y las líneas a leer: ./ruta/fichero/ l1 l2 l3");
             String leer=sc.nextLine();
@@ -25,11 +25,12 @@ public class ej1 {
             for (int i=1;i<(args.length);i++){
                 br=new BufferedReader(new FileReader(args[0]));
                 numLinea=Integer.parseInt(args[i]);
-                index=0;
+                index=1;
                 try {
                     while ((line = br.readLine()) != null){
                         if(index==numLinea)
                             System.out.println(line);
+
                         index++;
 
                     }
