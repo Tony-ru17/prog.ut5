@@ -18,31 +18,34 @@ public class ej2 {
             String leer=sc.nextLine();
             args=leer.split(" ");
         }
+        File f = new File(args[0]);
+        File f2 = new File(args[0] + ".tmp");
         int[] linesABorrar=new int[(args.length)-1];
         for(int i=0;i<linesABorrar.length;i++){
             linesABorrar[i]=Integer.parseInt(args[i+1]);
         }
 
         try {
+            FileWriter fw=new FileWriter(args[0]+".tmp");
+            BufferedReader br=null;
 
-            BufferedReader br;
-            FileWriter fw=new FileWriter(args[0]+".new");
             for(int num:linesABorrar) {
-                index=1;
                 br=new BufferedReader(new FileReader(args[0]));
+                index=1;
+                System.out.println(num);
                 while ((line = br.readLine()) != null) {
                     if(num!=index) {
-                        fw.write(line);
+                        fw.write(line+"\n");
                         System.out.println(line);
                     }
                     index++;
                 }
 
             }
-            File f = new File(args[0]);
-            File f2 = new File(args[0] + ".new");
-            f2.renameTo(f);
 
+            f2.renameTo(f);
+            fw.close();
+            br.close();
 
 
         }
