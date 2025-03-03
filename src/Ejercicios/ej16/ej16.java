@@ -1,7 +1,5 @@
 
-import java.io.BufferedWriter;
-import java.sql.SQLOutput;
-import java.util.Arrays;
+
 import java.util.Scanner;
 import java.io.*;
 /*16. Programa que afija línies de text codificades a un fitxer de text. El programa ha de
@@ -13,15 +11,16 @@ public class ej16 {
 
         int opcion=0;
         String linea=null;
-        while (opcion != 4) {
-            System.out.println("Que opción eliges?\n1. Añadir línea de texto.\n2.Mostrar línea de texto.\n3.Codificar línea de texto\n4.Codificar línea de texto.\n5.Salir del programa.");
+        while (opcion != 5) {
+            System.out.println("Que opción eliges?\n1. Añadir línea de texto.\n2.Mostrar línea de texto.\n3.Codificar línea de texto\n4.Decodificar línea de texto.\n5.Salir del programa.");
             opcion = sc.nextInt();
             switch (opcion) {
                 case 1:
                     linea=AnadeLinea();
                     break;
                 case 2:
-                    System.out.println(LeerLinea());
+                    linea=LeerLinea();
+                    System.out.println(linea);
                     break;
                 case 3:
                     System.out.println(linea);
@@ -44,11 +43,12 @@ public class ej16 {
 
     }
     public static String AnadeLinea(){
-        try(FileWriter fw= new FileWriter("prueba.txt")){
+        try(FileWriter fw= new FileWriter("prueba.txt",true)){
             System.out.println("Que línea quieres añadir?");
             sc.nextLine();
             String linea=sc.nextLine();
-            fw.write(Codifica(linea));
+            linea=Codifica(linea);
+            fw.write(linea+"\n");
             return linea;
         }
         catch(IOException e){
@@ -58,19 +58,19 @@ public class ej16 {
 
     }
     public static String LeerLinea(){
-        try(FileReader f = new FileReader("prueba.txt")){
-            BufferedReader br=new BufferedReader(f);
+        try{
+            BufferedReader br=new BufferedReader(new FileReader("prueba.txt"));
             int numLineas=0;
             int lineaAVer=0;
-            String line=null;
+            String line="nada";
             while(br.readLine()!=null)
                 numLineas++;
-            br=new BufferedReader(f);
+            br=new BufferedReader(new FileReader("prueba.txt"));
             System.out.println("Que línea quieres ver? Entre 1 y "+numLineas);
             lineaAVer=sc.nextInt();
             int index=1;
             while((line=br.readLine())!=null){
-                if(index==numLineas)
+                if(index==lineaAVer)
                     return line;
                 index++;
             }
@@ -83,16 +83,16 @@ public class ej16 {
     }
     public static String Codifica(String linea){
         char[] caracteres= linea.toCharArray();
-        for(char c : caracteres)
-            c += 13;
+        for(int i=0;i<linea.length();i++)
+            caracteres[i]+=13;
         return new String(caracteres);
 
     }
 
     public static String DeCodifica(String linea){
         char[] caracteres= linea.toCharArray();
-        for(char c : caracteres)
-            c -= 13;
+        for(int i=0;i<linea.length();i++)
+            caracteres[i]-=13;
         return new String(caracteres);
 
     }
