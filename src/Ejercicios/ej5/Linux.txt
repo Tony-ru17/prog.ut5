@@ -1,0 +1,3 @@
+Linux es un sistema operativo de código abierto basado en el núcleo del mismo nombre. A lo largo de los años, Linux ha ganado popularidad por su robustez, flexibilidad y seguridad. Muchos desarrolladores y usuarios prefieren linux por su capacidad para personalizar el sistema según sus necesidades.
+
+Algunos prefieren utilizar Linux en servidores debido a su estabilidad y eficiencia, mientras que otros disfrutan de la experiencia en sus computadoras personales con distribuciones como Ubuntu, Fedora o Debian. Hoy en día, linux es la base de una amplia variedad de dispositivos, desde servidores hasta smartphones.
