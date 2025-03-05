@@ -1,3 +1,4 @@
+
 1. Programa que mostre unes determinades línies d'un fitxer de text. Tant el fitxer com els números de línia (en ordre creixent) seran passats com a paràmetres en l'execució. Exemple:
 
 	java ex1 /ruta/Al/Fitxer 3 7 10
