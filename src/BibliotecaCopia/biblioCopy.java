@@ -34,7 +34,7 @@ public class biblioCopy {
             case 2:
                 System.out.println("Dime el libro a pasar:");
                 buscarLibro=sc.nextInt();
-                titol=mostrarLibro(buscarLibro);
+                titol=mostrarLibro(buscarLibro,libros);
                 System.out.println(titol);
                 break;
             case 3:
@@ -90,30 +90,18 @@ public class biblioCopy {
         }
     }
 
-    public static String mostrarLibro(int cod){
-        int comparar;
-        try (DataInputStream dis= new DataInputStream(new FileInputStream("binaryBiblio"))){
-            while(dis.available()>0){
-                comparar=dis.readInt();
-                if(comparar==cod)
-                    return dis.readUTF();
+    public static String mostrarLibro(int cod, Vector<Libro> libros){
+        for(Libro l:libros){
+            if(l.getCodigo()==cod)
+                return l.getNombre();
+        }
 
-                else{
-                    dis.readUTF();
-                    dis.readDouble();
-                }
-            }
-        }
-        catch(IOException e){
-            System.out.println(e.getMessage());
-                
-        }
         return "No se ha encontrado el libro.";
     }
     public static void mostrarLibros(Vector<Libro> libros){
         for(Libro l:libros)
             System.out.println("El libro nº"+l.getCodigo()+" tiene de título "+l.getNombre()+" y precio "+l.getPrecio()+"€");
-
+        System.out.println("\n");
     }
     public static void borrarLibro(int cod,Vector<Libro> libros){
 
