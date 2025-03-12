@@ -72,7 +72,7 @@ public class biblioCopy {
     public static void darAlta(Vector<Libro> libros){
         String titulo;
         double precio;
-        int cod=obtenerCod();
+        int cod=obtenerCod(libros);
         try(DataOutputStream dos =new DataOutputStream(new FileOutputStream("binaryBiblio",true))){
             dos.writeInt(cod);
             System.out.println("Dime el nombre del libro.");
@@ -132,24 +132,8 @@ public class biblioCopy {
         f2.renameTo(new File("binaryBiblio"));
         System.out.println("Elemento "+cod+" eliminado.");
     }
-    public static int obtenerCod(){
-        int cod=0;
-        int temp=0;
-        try(DataInputStream dis= new DataInputStream(new FileInputStream("binaryBiblio"))){
-            while(dis.available()>0) {
-                temp=dis.readInt();
-                dis.readUTF();
-                dis.readDouble();
-                cod=temp+1;
-            }
-        }
-        catch (IOException e){
-            System.out.println("Codigo: "+cod);
-            return cod;
-        }
-        System.out.println("Codigo: "+cod);
-        return cod;
-
+    public static int obtenerCod(Vector<Libro> libros){
+        return libros.getLast().getCodigo();
     }
 }
 
