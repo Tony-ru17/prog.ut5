@@ -20,14 +20,42 @@ public class ej11 {
     }
     public static void alta(){
 
-        try(DataOutputStream dos= new DataOutputStream(new FileOutputStream("videoclub",true))){
+        try(DataOutputStream dos= new DataOutputStream(new FileOutputStream("videoclub.dat",true))){
+            int cod;
+            String titulo;
+            String director;
             System.out.println("Dime el código:");
-            dos.writeInt();
+            cod=sc.nextInt();
+            sc.nextLine();
             System.out.println("Dime el título:");
+            titulo=sc.nextLine();
             System.out.println("Dime el director:");
+            director=sc.nextLine();
+            dos.writeInt(cod);
+            dos.writeUTF(titulo);
+            dos.writeUTF(director);
         }
         catch (IOException e){
             System.out.println(e.getMessage());
         }
+    }
+    public static String consulata(int cod){
+        try(DataInputStream dis= new DataInputStream(new FileInputStream("videoclub.dat"))){
+            int leerCod;
+            String leertiutlo;
+            String leerDirector;
+            while(dis.available()>0) {
+                leerCod = dis.readInt();
+                leertiutlo=dis.readUTF();
+                leerDirector=dis.readUTF();
+                if (leerCod == cod)
+                    return 
+            }
+
+        }
+        catch(IOException e){
+            System.out.println(e.getMessage());
+        }
+
     }
 }
