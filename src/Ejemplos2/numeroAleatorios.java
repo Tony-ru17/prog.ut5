@@ -1,5 +1,5 @@
 import java.io.*;
-import java.io.Scanner;
+import java.util.Scanner;
 
 class numeroAleatorios{
 	public static void main(String[] args) {

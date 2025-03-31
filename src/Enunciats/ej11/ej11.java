@@ -39,7 +39,7 @@ public class ej11 {
             System.out.println(e.getMessage());
         }
     }
-    public static String consulata(int cod){
+    public static int consulta(int cod){
         try(DataInputStream dis= new DataInputStream(new FileInputStream("videoclub.dat"))){
             int leerCod;
             String leertiutlo;
@@ -49,12 +49,14 @@ public class ej11 {
                 leertiutlo=dis.readUTF();
                 leerDirector=dis.readUTF();
                 if (leerCod == cod)
-                    return 
+                    return cod;
             }
+            return -1;
 
         }
         catch(IOException e){
             System.out.println(e.getMessage());
+            return -1;
         }
 
     }

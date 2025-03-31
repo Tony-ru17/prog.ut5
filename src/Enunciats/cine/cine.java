@@ -27,6 +27,7 @@ public class cine{
 				}
 
 			}
+			while(eleccion!=0);
 			
 			    
 
