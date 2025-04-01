@@ -1,4 +1,4 @@
-package Enunciats.empleatsRAF;
+//package Enunciats.empleatsRAF;
 import java.util.Scanner;
 import java.io.*;
 
@@ -15,7 +15,7 @@ public class empleatsRAF{
 
 		try(RandomAccessFile raf= new RandomAccessFile("empleats.dat","rw")){
 			do{
-
+				System.out.println("---------------------------------------------------");
 				System.out.println("1. Alta d'un empleat");
 				System.out.println("2. Consulta d'un empleat (a partir del DNI)");
 				System.out.println("3. Modificar salari d'un empleat (a partir del DNI)");
@@ -31,7 +31,7 @@ public class empleatsRAF{
 	    				sc.nextLine();
     					pos=dni%1000;
     					raf.seek(pos*TAM);
-    					if(raf.readInt()==0){
+    					if(consultarDNI(dni)==-1){
 			    			System.out.println("Dime el nombre:");
 			    			nombre=	sc.nextLine();
 			    			if(nombre.length()>46)
@@ -43,8 +43,9 @@ public class empleatsRAF{
 			    			raf.writeBytes(nombre+"\n");
 			    			raf.writeDouble(salario);
 		    			}
-		    			else
-		    				System.out.println("Posición ya ocupada.");
+		    			else {
+							System.out.println("Posición ya ocupada.");
+						}
 
 	    				break;
 					case 2:
@@ -59,7 +60,7 @@ public class empleatsRAF{
 						else {
 							pos=dni%1000;
 							raf.seek(pos*TAM);
-							System.out.println("DNI: " + raf.readInt() + "\nNombre:" + raf.readLine() + "\nSalario:" + raf.readDouble());
+							System.out.println("------------------------------------\nDNI: " + raf.readInt() + "\nNombre:" + raf.readLine() + "\nSalario:" + raf.readDouble()+"\n----------------------------");
 						}
 						break;
 					case 3:
@@ -91,15 +92,22 @@ public class empleatsRAF{
 						else if(error==0)
 							System.out.println("DNI mal escrito.");
 						else {
+							System.out.println("DNI eliminado");
 							pos=dni%1000;
 							raf.seek(pos*TAM);
-							raf.writeInt(0);
-							raf.writeBytes(" ");
-							raf.writeDouble(0);
+							byte[] ceros= new byte[TAM];
+							raf.write(ceros);
 						}
-
 						break;
 					case 5:
+						int nEmpleado=0;
+						for(pos=0;pos<raf.length();pos+=TAM){
+							raf.seek(pos);
+							dni=raf.readInt();
+							if(dni!=0)
+								System.out.println("Empleado nº"+nEmpleado+".\nDNI: "+dni+"\nNombre: "+raf.readLine()+"\nSalario: "+raf.readDouble()+"\n-------------------------\n");
+							nEmpleado++;
+						}
 						break;
 		    		default:
 		    			break;
@@ -130,7 +138,6 @@ public class empleatsRAF{
 			int pos = dni % 1000;
 			raf.seek(pos * TAM);
 			int aux = raf.readInt();
-			System.out.println(aux);
 			if (aux == 0)
 				//Con -1 devolvemos que en la posición no existen valores
 				return -1;
