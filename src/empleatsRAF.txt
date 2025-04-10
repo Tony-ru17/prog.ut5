@@ -1,0 +1,15 @@
+A) Programa que gestione les dades dels empleats d'una empresa amb un fitxer d'accés aleatori (o directe). El programa oferirà un menú amb les opcions:
+
+	1. Alta d'un empleat
+	2. Consulta d'un empleat (a partir del DNI)
+	3. Modificar salari d'un empleat (a partir del DNI)
+	4. Esborrar empleat (a partir del DNI)
+	5. Mostrar tots els empleats
+
+De cada empleat volem registrar DNI (sense lletra, enter), nom (String) i salari (double).
+
+Cada empleat, en una posició del fitxer, haurà d'ocupar 60 bytes. El fitxer tindrà una divisió lògica de 60 en 60 bytes per a cada registre corresponent a un empleat. A cada empleat li correspondrà com a posició el valor resultant de les 3 últimes xifres del seu DNI (per exemple, l'empleat amb DNI 43123756 es guardarà en la posició 756). El fitxer contindrà, per tant, espai per a 1000 empleats ( 60000 bytes, aproximadament 60 KB). El fitxer el pots crear previament amb el comandament "truncate -s 60000 empleats.dat".
+
+Quan fem l'alta d'un empleat s'ha d'evitar sobreescriure altre previament existent en eixa posició. En eixe cas no escriurà el nou empleat i s'indicarà per pantalla.
+
+B) Fes una còpia de l'anterior codi i modifica la còpia per que el programa permeta sinònims guardant-los al final del fitxer. Sempre que busquem un empleat ens haurem de posicionar i, si trobem un DNI diferent a l'esperat, operarem seqüencialment a partir del final del fitxer (àrea de sinònims). 

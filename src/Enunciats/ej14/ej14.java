@@ -1,6 +1,7 @@
 /*14. Programa que permeta generar un sorteig de Loteria primitiva (6 números entre 1 i 49, sense repeticions) i registre en un fitxer binari
  49 comptadors que comptabilitzen quantes vegades ha eixit cada número. Per a cada sorteig el programa haurà d'incrementar en una unitat 6 dels
  comptadors. El programa ha d'oferir un menú per a triar entre 2 opcions: a) generar un sorteig, b) mostrar comptadors de tots els números.*/
+import javax.xml.crypto.Data;
 import java.util.Random;
 import java.util.Scanner;
 import java.io.*;
@@ -40,6 +41,10 @@ public class ej14{
 					leerNumeros();
 					break;
 				case 3:
+					int pos;
+					System.out.println("¿Qué posición quieres ver?");
+					pos=sc.nextInt();
+					System.out.println("El número "+pos+" se ha repetido "+obtenerNumero(pos)+" veces.");
 					break;
 				case 4:
 					break;
@@ -79,20 +84,29 @@ public class ej14{
 		boolean escrito=false;
 		try(DataInputStream dis= new DataInputStream(new FileInputStream(f1));
 			DataOutputStream dos = new DataOutputStream(new FileOutputStream(f2))){
-			
-			posicion=dis.readInt();
-			suma=dis.readInt();
-			for(int i:loteria){
-				if(i==posicion)
-					suma++;
+			while(dis.available()>0) {
+				posicion = dis.readInt();
+				suma = dis.readInt();
+				for (int i : loteria) {
+					if (i == posicion)
+						suma++;
+				}
+				dos.writeInt(posicion);
+				dos.writeInt(suma);
 			}
-			dos.writeInt(posicion);
-			dos.writeInt(suma);
 		}
+
 		catch(IOException e){
 			System.out.println(e.getMessage());
 		}
-		f2.renameTo(f1);
+		if (f1.delete()) {
+		    if (!f2.renameTo(f1)) {
+		        System.out.println("Error al renombrar el archivo.");
+		    }
+		} else {
+		    System.out.println("Error al eliminar el archivo original.");
+		}
+
 
 	}
 		
@@ -113,5 +127,25 @@ public class ej14{
 		}
 		while(repetido);
 		return num;
+	}
+	public static int obtenerNumero(int num){
+		int cant=0;
+		try(DataInputStream dis= new DataInputStream(new FileInputStream("contadorNumeros.dat"))){
+			
+			int pos=0;
+			while(dis.available()>0){
+				pos=dis.readInt();
+				if(pos==num){
+					cant=dis.readInt();
+					break;
+				}
+				else
+					dis.readInt();
+			}
+		}
+		catch(IOException e){
+			System.out.print(e.getMessage());
+		}
+		return cant;
 	}
 }

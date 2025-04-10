@@ -1,0 +1,24 @@
+Fes un programa en Java per a gestió de productes d'un supermercat.
+
+Cada producte constarà de:
+	- identificador numèric (enter)
+	- descripció (per exemple, Cola Cao)
+	- unitats existents (enter)
+	- preu (real)
+
+El programa, mitjançant un menú, oferirà, com a mínim, a l'usuari les opcions:
+
+	- alta d'un nou producte
+	- baixa d'un producte
+	- consulta d'un producte a partir de l'identificador
+	- augmentar o disminuir les unitats d'un producte
+	- canviar el preu d'un producte
+	- incrementar, o decrementar, el preu de tots els productes en un determinat percentatge
+
+a) Amb fitxer seqüencial
+
+b) afig al menú anterior 2 opcions que permetan
+	- fer una còpia de seguretat (serialitzant tots els productes)
+	- recuperar els productes (des-serialitzar) des d'una còpia de seguretat anterior
+
+c) Repetix el programa amb fitxer d'accés aleatori (sense sinònims)

@@ -1,0 +1,16 @@
+A. Programa que genere 100 números de loteria (de 0 a 99999), els guarde en un array estàtic, genere un Stream a partir de l'array i, fent ús de fluxes, mostre el màxim.
+    A utilitzar Arrays.streams(), max() 
+
+	Hauràs de tindre en compte que:
+
+	- Arrays.streams() en aquest cas no retorna un Stream, sino un IntStream
+	- la funció max() de Stream<T> retorna un Optional<T>, i la d'IntStream, en aquest cas, un OptionalInt. Mira la documentació i utilitza la funció que retorne el valor corresponent.
+
+B. Programa que genere 100 números de loteria (de 0 a 99999) i fent ús de fluxes mostre quants menors de 1000 s'han generat
+    A utilitzar Arrays.streams(), filter() i count()
+
+C. Programa que genere 100 números de loteria (de 0 a 99999) i fent ús de fluxes mostre la mitjana
+    A utilitzar average() 
+
+D. Programa que genere 100 números de loteria (de 0 a 99999) i fent ús de fluxes compte i mostre els valors truncats al miler inferior (0, 1000, 2000 ... fins a 99000 )
+    A utilitzar map() i forEach() 

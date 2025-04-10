@@ -1,0 +1,105 @@
+1. Programa que mostre unes determinades línies d'un fitxer de text. Tant el fitxer com els números de línia (en ordre creixent) seran passats com a paràmetres en l'execució. Exemple:
+
+	java ex1 /ruta/Al/Fitxer 3 7 10
+
+2. Programa que s'execute d'igual forma que l'anterior, amb un únic número de línia, i esborre eixa línia del fitxer.
+
+3. Programa que afegirà una línia de text a un fitxer. Tots dos es passaran com a paràmetres en l'execució.
+
+4. Realitza un programa que compte les línies, paraules i caràcters existents en un fitxer de text passat com a paràmetre (semblant al comandament "wc").
+
+5. Es necessita crear una classe censura amb un mètode aplicaCensura, a la qual se li passe com a paràmetre el nom d'un fitxer, i substituïsca cada aparició de "Linux" per "Unix" en aquest fitxer. No et preocupes pels canvis de línia si es perden. Recomanacions: 
+
+ - utilitza la classe Scanner, amb els seus mètodes next i hasNext.
+ - crea un segon fitxer en el qual vages escrivint cada paraula, llegida del fitxer original, diferent de "Linux", i escrivint "Unix" quan la paraula llegida siga aquella. Al final, pots eliminar el fitxer original i canviar de nom el nou amb el de l'original.
+
+6. Programa que compte les paraules existents en un fitxer de text, fent ús de Scanner per a llegir de fitxer. Utilitza next() i hasNext(), tenint en compte els delimitadors per defecte per a aquests mètodes.
+
+7. Realitza un programa que elimine tots els espais en blanc repetits en un fitxer de text.
+
+8. Programa que, utilitzant la classe PushbackReader, faça substitucions sobre un fitxer de text de manera que, sempre que trobe una majúscula al principi d'una frase (després del punt .) i que no vaja precedida per un espai, inserisca el corresponent espai en blanc.
+
+	Exemple:
+	
+		Hola.Soc David. T'escric per a ...
+		
+			serà substituït per
+			
+		Hola. Soc David. T'escric per a ...
+
+9. Repeteix la classe censura amb el mètode aplicaCensura que modifique unes certes paraules d'un fitxer. El mètode prendrà un fitxer d'entrada i, mitjançant un fitxer de censura, crearà un fitxer d'eixida amb les modificacions necessàries.
+
+	Exemple.
+	
+	Fitxer d'entrada:
+	Linux és un sistema operatiu apte per a mainframes ...
+	
+	Fitxer de censura:
+	Linux   Unix
+	mainframes  servidors
+	
+	Fitxer d'eixida:
+	Unix és un sistema operatiu apte per a servidors ...
+	
+	Suggeriment: per a aquest exercici et poden servir les classes StringTokenizer, per a fragmentar les línies per paraules, i HashTable, per a fer les substitucions.
+
+10. Programa que accepte valors numèrics fins a acabar amb un zero i els escriga a fitxer. El programa acabarà mostrant el contingut del fitxer i la mitjana dels seus valors.
+
+11. Programa que gestione una filmoteca, o videoclub, oferint el següent menú:
+
+	1. Alta de pel·lícula
+	2. Consulta d'una pel·lícula a partir del seu codi
+	3. Llistar totes les pel·lícules
+	4. Esborrar una pel·lícula a partir del seu codi
+	0. Eixir del programa
+
+Cada pel·lícula tindrà 3 dades: codi de la pel·lícula (enter), títol (String) i director (String). El programa crearà el fitxer SEQÜENCIAL guardant un registre en ell per a cada pel·lícula. No s'utilitzaran objectes pel·lícula.
+	
+12. Crea una classe Diccionari amb 2 atributs per a contindre la mateixa paraula en 2 idiomes. Realitza un programa que serialitze 10 objectes Diccionari a fitxer. El programa acabarà mostrant els objectes llegits des de fitxer. Incloure un tercer atribut "num" enter que no es guarde.
+
+13. Fent ús de la classe RandomAccessFile realitza un programa que accepte parells de números (int i double), de tal forma que el programa escriga en binari a fitxer el valor double en la posició indicada per l'enter. El programa demanarà parells de números fins a acabar amb un parell en el qual l'enter valga zero.
+
+	Exemple:
+	
+	2 3.6
+	5 11.5
+	3 -3.1
+	0 9.4
+	
+, generarà el següent fitxer:
+
+	--------------------------
+	| x | 3.6|-3.1| x |11.5|
+	--------------------------
+	
+14. Programa que permeta generar un sorteig de Loteria primitiva (6 números entre 1 i 49, sense repeticions) i registre en un fitxer binari 49 comptadors que comptabilitzen quantes vegades ha eixit cada número. Per a cada sorteig el programa haurà d'incrementar en una unitat 6 dels comptadors. El programa ha d'oferir un menú per a triar entre 2 opcions: a) generar un sorteig, b) mostrar comptadors de tots els números.
+
+15. Programa que admeta les següents formes d'ús:
+
+	java ex15
+
+Sense paràmetres, mostrarà els permisos de lectura, escriptura i execució del directori actual per a l'usuari que execute el programa.
+
+	java ex15 /ruta/al/fitxer/o/directori
+
+Amb un paràmetre, mostrarà els permisos de lectura, escriptura i execució del directori indicat per a l'usuari que execute el programa (si s'indica un fitxer, es farà per al directori que el conté)
+
+	java ex15 /ruta/al/fitxer/o/directori [c|d|l]
+
+Quan s'afija com a segon paràmetre una c, d o l, aquests tindran el significat de [c]reate (crear el directori si no existeix), [d]elete (esborrar el directori, només si està buit) o [l]ist (llistar el contingut del directori).
+
+16. Programa que afija línies de text codificades a un fitxer de text. El programa ha de permetre afegir una línia de text nova codificada o mostrar tot el contingut del fitxer (codificat o descodificat). Pots inventar-te l'algorisme o forma de codificació.
+
+17. Programa que gestione les poblacions de cada localitat del Vinalopó Mitjà amb un fitxer seqüencial i binari, per exemple:
+
+	Monòver 9376
+	Elda 71879
+	Petrer 28236
+	Novelda 27158
+	
+	El programa ha de permetre:
+	1 - inicialitzar fitxer amb les dades inicials  (demanará nom de cada població i quantitat)
+	2 - actualitzar població d'una localitat (demanarà població, naixements i defuncions)
+	3 - calcular el total de la població comarcal
+	
+	
